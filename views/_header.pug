@@ -1,0 +1,61 @@
+nav#mainNav-2.navbar.navbar-light.navbar-toggleable-sm.bg-faded.justify-content-between
+  button.navbar-toggler.navbar-toggler-right(type='button' data-toggle='collapse' data-target='#collapsingNavbar2')
+    span.navbar-toggler-icon
+  a.navbar-brand.mr-0(href='/home')  Veno
+  #collapsingNavbar2.navbar-collapse.collapse.justify-content-between
+    div
+      // placeholder to evenly space flexbox items and center links
+    ul.navbar-nav
+      // Search in right of nav
+      li.nav-item.hidden-xs-down
+        form.top_search.clearfix
+          .top_search_con
+            input.s(placeholder='Search Here ...' type='text')
+            span.top_search_icon
+              i.fa.fa-search
+            input.top_search_submit(type='submit')
+      // Search Ends
+    ul.nav.navbar-nav
+      li.nav-item.profileBtn
+        a(href='/home') Home |
+      li.nav-item.profileBtn 
+        a(href='/profile') Profile |
+      li.nav-item.dropdown.mega-notification
+        a.nav-link(href='#' data-toggle='dropdown' aria-expanded='true')
+          i.fa.fa-bell-o
+        .dropdown-menu.pull-right.w-xl.no-bg.no-border.no-shadow
+          .scrollable
+            ul.list-group.list-group-gap.m-a-0
+              li.list-group-item.dark-white.text-color.box-shadow-z0.b
+                span.pull-left.m-r
+                  img.w-40.img-circle(src='/img/users/4.jpg' alt='...')
+                span.clear.block
+                  a.text-primary(href='#') Jonathan
+                  |  sent you a message
+                  br
+                  small.text-muted 1 day ago
+              // /list-group-item
+            // /list-group
+          // /scrollable
+        // /dropdown-menu
+      // /navbar-item
+      li.nav-item.dropdown.mega-avatar
+        a.nav-link.dropdown-toggle.clear(data-toggle='dropdown' aria-expanded='true')
+          span.avatar.w-32
+            img.w-full.rounded(src=`/img/usersPhoto/${user.photo}` style='border-radius:20px' width='35' height='35' alt='...')
+          // hidden-xs hides the username on small devices so only the image appears.
+          span.hidden-xs
+            | #{user.firstName} #{user.lastName}
+        .dropdown-menu.w.dropdown-menu-scale.pull-right
+          a.dropdown-item(href='/profile')
+            span Profile
+          a.dropdown-item(href='/me')
+            span Settings
+          a.dropdown-item(href='#') Need help?
+          .dropdown-divider
+          a.dropdown-item.nav__el--logout Sign out
+      
+      // /navbar-item
+    // /navbar-nav
+  // /navbar-collapse
+// End Nav

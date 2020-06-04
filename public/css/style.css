@@ -1,0 +1,437 @@
+
+/** Login 14 start **/
+.login-14{
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.login-14 .login-inner-form {
+    color: #cccccc;
+    position: relative;
+}
+
+.login-14 .bg-color-16 {
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: #fff;
+}
+
+.login-14 .form-section{
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.login-14 .form-box{
+    width: 100%;
+    text-align: center;
+}
+
+.login-14 .login-inner-form .form-group {
+    margin-bottom: 25px;
+}
+
+.login-14 .login-inner-form .form-box {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.login-14 .login-inner-form .input-text {
+    font-size: 14px;
+    outline: none;
+    color: #616161;
+    border-radius: 3px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-14 .login-inner-form img {
+    margin-bottom: 5px;
+    height: 40px;
+}
+
+.login-14 .login-inner-form .form-box input {
+    float: left;
+    width: 100%;
+    padding: 11px 45px 11px 20px;
+    border-radius: 50px;
+}
+
+.login-14 .login-inner-form .form-box i {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 19px;
+    color: #616161;
+}
+
+.login-14 .login-inner-form label{
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.login-14 .login-inner-form .forgot{
+    margin: 0;
+    line-height: 45px;
+    color: #535353;
+    font-size: 15px;
+    float: right;
+}
+
+.login-14 .bg-img {
+    padding: 0;
+    border-radius: 10px 0 0 10px;
+    background: rgba(0, 0, 0, 0.04) url(../img/bg-image-10.jpg) top left repeat;
+    background-size: cover;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+}
+
+.login-14 .login-box{
+    background: #fff;
+    max-width: 950px;
+    margin: 0 auto;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.login-14 .info {
+    height: 450px;
+}
+
+.login-14 .login-inner-form .btn-md {
+    cursor: pointer;
+    padding: 10px 30px 9px 30px;
+    height: 45px;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 50px;
+    color: #d6d6d6;
+}
+
+.login-14 .login-inner-form input[type=checkbox], input[type=radio] {
+    margin-right: 3px;
+}
+
+.login-14 .login-inner-form p{
+    margin: 0;
+    color: #616161;
+}
+
+.login-14 .login-inner-form p a{
+    color: #616161;
+}
+
+.login-14 .login-inner-form button:focus {
+    outline: none;
+    outline: 0 auto -webkit-focus-ring-color;
+}
+
+.login-14 .login-inner-form .btn-theme.focus, .btn-theme:focus {
+    box-shadow: none;
+}
+
+.login-14 .login-inner-form .btn-theme {
+    background: #ff214f;
+    border: none;
+    color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-14 .login-inner-form .btn-theme:hover {
+    background: #ea1945;
+}
+
+.login-14 .logo{
+    height: 30px;
+    text-align: left;
+    margin: 20px;
+}
+
+.login-14 .logo img{
+    height: 25px;
+}
+
+.login-14 .logo-2{
+    margin-bottom: 15px;
+    display: none;
+}
+
+.login-14 .logo-2 img{
+    height: 30px;
+}
+
+.login-14 .nav-pills li{
+    display: inline-block;
+}
+
+.login-14 .login-inner-form .checkbox {
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.login-14 .login-inner-form .form-check{
+    float: left;
+    margin-bottom: 0;
+}
+
+.login-14 .login-inner-form .form-check a {
+    color: #d6d6d6;
+    float: right;
+}
+
+.login-14 .login-inner-form .form-check-input {
+    position: absolute;
+    margin-left: 0;
+}
+
+.login-14 .login-inner-form .form-check label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    margin-left: -25px;
+    border: none;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-14 .login-inner-form .form-check-label {
+    padding-left: 25px;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #616161;
+}
+
+.login-14 .login-inner-form .checkbox-theme input[type="checkbox"]:checked + label::before {
+    color: #fff;
+    background: #ff214f;
+}
+
+.login-14 .login-inner-form input[type=checkbox]:checked + label:before {
+    font-weight: 300;
+    color: #f3f3f3;
+    line-height: 17px;
+    font-size: 14px;
+    content: "\2713";
+}
+
+.login-14 .btn-section{
+    float: right;
+    display: inline-block;
+}
+
+.login-14 .btn-section {
+    top: 40%;
+    position: absolute;
+    right: 0;
+    margin-bottom: 0;
+}
+
+.login-14 .btn-section .link-btn {
+    font-size: 12px;
+    float: left;
+    background: transparent;
+    letter-spacing: 1px;
+    text-align: left;
+    font-weight: 600;
+    border-radius: 0;
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+    text-decoration: blink;
+}
+
+.login-14 .btn-section .default-bg{
+    background: #fff;
+    color: #505050;
+}
+
+.login-14 .btn-section .btn-1{
+    line-height: 45px;
+    text-align: center;
+    width: 100px;
+    text-transform: uppercase;
+    border-radius: 50px 0 0 50px;
+}
+
+.login-14 .login-inner-form input[type=checkbox], input[type=radio] {
+    margin-top: 4px;
+}
+
+.login-14 .login-inner-form .checkbox a {
+    font-size: 14px;
+    color: #616161;
+    float: right;
+    margin-left: 3px;
+}
+
+.login-14 .text {
+    display: none;
+}
+
+.login-14 .form-section{
+    text-align: center;
+}
+
+.login-14 .form-section h3{
+    font-size: 25px;
+    margin-bottom: 30px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #505050;
+}
+
+.login-14 .form-section .text {
+    font-size: 14px;
+    margin-top: 25px;
+    margin-bottom: 0;
+    color: #616161;
+}
+
+.login-14 .form-section .text a{
+    color: #616161;
+}
+
+.login-14 .social-list{
+    bottom: 20px;
+    position: absolute;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.login-14 .social-list a {
+    width: 60px;
+    padding-right: 5px;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 0 50px 50px 0;
+    background: rgba(23, 23, 23, 0.298039);
+}
+
+.login-14 .facebook-bg:hover {
+    background: #3b589e;
+    color: #fff;
+}
+
+.login-14 .twitter-bg:hover {
+    background: #56d7fe;
+}
+
+.login-14 .google-bg:hover {
+    background: #dc4e41;
+}
+
+.login-14 .linkedin-bg:hover {
+    background: #1c82ca;
+    color: #fff;
+}
+
+.login-14 .pinterest-bg:hover {
+    background: #a30618;
+    color: #fff;
+}
+
+/** MEDIA **/
+@media (max-width: 992px) {
+    .login-14 .none-992{
+        display: none;
+    }
+
+    .login-14 .login-box {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .login-14 .form-section h3{
+        font-size: 20px;
+    }
+
+    .login-14 .logo-2{
+        display: block;
+    }
+
+    .login-14 .text {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-14 .bg-color-16{
+        padding: 30px;
+    }
+}
+/** Login 14 end **/
+
+.form__input:focus {
+    border: 3px solid #55c57a;
+}
+
+.form__input:focus:invalid {
+    border: 3px solid #ff7730;
+}
+
+.form__input:focus:valid {
+    border: 3px solid #55c57a;
+}
+.form__input::-webkit-input-placeholder {
+    color: #bbb;
+}
+
+.alert {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 9999;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 1rem 12rem;
+    -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+}
+
+input[type='file'] {
+	width:110px;
+  }
+
+
+.alert--success {
+    background-color: #20bf6b;
+}
+
+.alert--error {
+    background-color: #eb4d4b;
+}

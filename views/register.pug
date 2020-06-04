@@ -1,0 +1,94 @@
+doctype html
+head
+  title Veno - Register
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(charset='UTF-8')
+  // External CSS libraries
+  link(type='text/css' rel='stylesheet' href='/css/bootstrap.min.css')
+  link(type='text/css' rel='stylesheet' href='/fonts/font-awesome/css/font-awesome.min.css')
+  link(type='text/css' rel='stylesheet' href='/fonts/flaticon/font/flaticon.css')
+  // Favicon icon
+  link(rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon')
+  // Google fonts
+  link(rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700')
+  // Custom Stylesheet
+  link(type='text/css' rel='stylesheet' href='/css/style.css')
+  link#style_sheet(rel='stylesheet' type='text/css' href='/css/skins/default.css')
+.page_loader
+// Login 14 start
+.login-14
+  .container
+    .row.login-box
+      .col-lg-5.col-md-12.bg-img.none-992.col-pad-0.align-self-center
+        .info
+          .logo.clearfix
+            a(href='/login')
+              img(src='/img/logos/logo.png' alt='logo')
+          .btn-section.clearfix
+            a.link-btn.active.btn-1(href='/') Login
+            .clearfix
+            a.link-btn.btn-1.default-bg(href='/signup') Register
+          ul.social-list
+            li
+              a.facebook-bg(href='/auth/facebook')
+                i.fa.fa-facebook
+            li
+              a.twitter-bg(href='#')
+                i.fa.fa-twitter
+            li
+              a.google-bg(href='#')
+                i.fa.fa-google
+            li
+              a.linkedin-bg(href='#')
+                i.fa.fa-linkedin
+            li
+              a.pinterest-bg(href='#')
+                i.fa.fa-pinterest
+      .col-lg-7.col-md-12.bg-color-16.align-self-center
+        .form-section
+          .logo-2.clearfix
+            a(href='/')
+              img(src='/img/logos/logo-2.png' alt='logo')
+          h3 Create an account
+          .login-inner-form
+            form.form--signup
+              .form-group.form-box
+                input.input-text(type='text' name='firstName' id='firstName' placeholder='First Name')
+                i.flaticon-user
+              .form-group.form-box
+                input.input-text(type='text' name='lastName' id='lastName' placeholder='Last Name')
+                i.flaticon-user
+              .form-group.form-box
+                input.input-text.form__input(type='Date' name='birthdate' id='birthdate' placeholder='Bithdate')
+                i.flaticon-user
+              .form-group.form-box
+                input.input-text.form__input(type='email' name='email' id='email' placeholder='Email Address')
+                i.flaticon-mail-2
+              .form-group.form-box
+                input.input-text.form__input(type='phone' name='phone' id='phone' placeholder='phone number' minlength='11')
+                i.flaticon-password
+              .form-group.form-box
+                input.input-text.form__input(type='password' name='Password' id='password' placeholder='Password' minlength='8')
+                i.flaticon-password
+              .form-group.form-box
+                input.input-text.form__input(type='password' name='PasswordConfirm' id='passwordConfirm' placeholder='Confirm password' minlength='8')
+                i.flaticon-password
+              .checkbox.clearfix
+                .form-check.checkbox-theme
+                  input#rememberMe.form-check-input(type='checkbox' value='')
+                  label.form-check-label(for='rememberMe')
+                    | I agree to the 
+                    a(href='#') terms of service
+              .form-group.mb-0
+                button.btn-md.btn-theme.btn-block Register
+              p.text
+                | Already a member?
+                a(href='/')  Login here
+// Login 14 end
+// External JS libraries
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js')
+script(src='/js/mapbox.js')
+script(src='/js/signup.js')
+script(src='/js/jquery-2.2.0.min.js')
+script(src='/js/popper.min.js')
+script(src='/js/bootstrap.min.js')

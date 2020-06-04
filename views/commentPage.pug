@@ -1,0 +1,179 @@
+doctype html
+
+mixin navItem(link, text, icon, active)
+    li(class=`${active ? 'active' : ''}`)
+        a(href=`${link}`)
+            i(class=`fa ${icon}`)
+            | #{text}
+
+head
+    //
+        ==============================================
+        Title and Meta Tags
+        ===============================================
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    title #{title}
+    meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='description' content='Add your business website description here')
+    meta(name='keywords' content='Add your, business, website, keywords, here')
+    meta(name='author' content='Add your business, website, author here')
+    //
+        ==============================================
+        Favicons
+        ===============================================
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
+    link(rel='shortcut icon' href='/img/favicons/favicon.html')
+    link(rel='apple-touch-icon' href='/img/favicons/apple-touch-icon.html')
+    link(rel='apple-touch-icon' sizes='72x72' href='/img/favicons/apple-touch-icon-72x72.html')
+    link(rel='apple-touch-icon' sizes='114x114' href='/img/favicons/apple-touch-icon-114x114.html')
+    //
+        ==============================================
+        CSS
+        ===============================================
+    // Style
+    link(type='text/css' href='/bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet')
+    link(type='text/css' href='/css/app.css' rel='stylesheet')
+    link(type='text/css' rel='stylesheet' href='/css/style.css')
+body
+
+    include _header
+    section.posts-2
+        .container-fluid
+            .row
+                .col-md-3
+                    .card.widget-info-one
+                        .widget-avatar-img
+                            img.card-img-top.img-fluid(src=`/img/usersCover/${user.coverPhoto}` alt='')
+                        // /.avatar-img
+                        .card-block
+                            .inner
+                                .widget-avatar.pull-left
+                                    img(alt='' src=`/img/usersPhoto/${user.photo}`)
+                                h5 #{user.firstName} #{user.lastName}
+                                span.subtitle #{user.bio}
+                            // /.inner
+                        .card-footer
+                            ul.post-view
+                                +navItem('#',`${numberOfFollower}`,'fa-users', false)
+                                +navItem('#',`${numberOfFollowing}`,'fa-user-plus', true)
+                                +navItem('#',`${numOfUserPosts}`,'fa-edit', false)
+                    .card.widget-info-two
+                        ul.list-group.list-group-flush
+                            li.list-group-item
+                                i.fa.fa-map-marker
+                                | &nbsp; #{user.location}
+                            li.list-group-item
+                                i.fa.fa-users
+                                | &nbsp; Group1
+                            li.list-group-item
+                                i.fa.fa-calendar
+                                | &nbsp; Joined 2009
+                            li.list-group-item
+                                i.fa.fa-globe
+                                a(href='http://www.themashabrand.com/' target='_blank') www.themashabrand.com
+
+                .col-md-6
+                    .tr-section.feed(style='background:#520f4a ')
+                        .tr-post
+                            if(post.postImg !== 'undefined' && post.postImg.split('/')[0] !== '') 
+                                .entry-header
+                                    .entry-thumbnail
+                                        a(href='#')
+                                            img.img-fluid(src=`/img/posts/${post.postImg}` alt='Image')
+                            .post-content
+                                .author-post
+                                    if(user.id === post.user.id)
+                                        a(href='/profile' style='padding:7px')
+                                            img.img-fluid.rounded-circle(src=`/img/usersPhoto/${post.user.photo}` alt='Image')
+                                    else
+                                        a(href=`/user/${post.user._id}`)
+                                            img.img-fluid.rounded-circle(src=`/img/usersPhoto/${post.user.photo}` alt='Image')
+                            .entry-meta
+                                ul(style='padding:7px; color:white;')
+                                    li
+                                        if(user.id === post.user.id)
+                                            a(href='/profile') #{post.user.firstName} #{post.user.lastName}
+                                        else
+                                            a(href=`/user/${post.user._id}`) #{post.user.firstName} #{post.user.lastName}
+                                    li 2 months ago
+                            p(style='padding:7px; color:white;')
+                                | #{post.text}
+                            .read-more
+                                .feed.pull-left
+                                    ul#ulPost
+                                        li(style='font-size:20px;')
+                                            a.btnComment#btnComment( data-post-id2=`${post.id}` data-user-id2=`${user.id}`)
+                                                i.fa.fa-comments(style='color:white;')
+                                                if(numOfComments > 0)
+                                                 | #{numOfComments}
+                                                else
+                                        li(style='font-size: 20px;')
+                                          a.btnLike
+                                            if ifIlikePost && ifIlikePost.isLike == true
+                                                i.fa.fa-heart-o(style='color:red;')
+                                                if(numberOfLikes2 > 0)
+                                                    | #{numberOfLikes2}
+                                                else
+                                            else
+                                                i.fa.fa-heart-o
+                                                if(numberOfLikes2 > 0)
+                                                    | #{numberOfLikes2}
+                                                else
+                            hr(style='background:white;')
+                            
+                            each comment in comments
+                              .post-content(style='color:white; font-size:20px;')
+                                .author-post(style='margin-top: 0;')
+                                    if(user.id === comment.user.id)
+                                        a(href='/profile' style='padding:7px')
+                                            img.img-fluid.rounded-circle(style='width:45px; height:40px;' src=`/img/usersPhoto/${comment.user.photo}` alt='Image')
+                                    else
+                                        a(href=`/user/${comment.user._id}`)
+                                            img.img-fluid.rounded-circle(style='width:45px; height:40px;' src=`/img/usersPhoto/${comment.user.photo}` alt='Image')
+                                
+                                .entry-meta(style='margin-left: 30px;')
+                                  ul
+                                   li(style='position: absolute; margin-top: -40px; margin-left: 52px;')
+                                    if(user.id === comment.user.id)
+                                      a(href='/profile') #{comment.user.firstName} #{comment.user.lastName}
+                                    else
+                                      a(href=`/user/${comment.user._id}`) #{comment.user.firstName} #{comment.user.lastName}
+                                   if(comment.commentImg)
+                                    .imgContent(style='position: relative; margin-top:23px;left:-150px;')
+                                            img(src=`/img/comments/${comment.commentImg}` style='margin-left:160px; max-width: 500px; max-height: 330px;')
+                                   li(style='font-size: 20px;color: white;')
+                                    p(style='margin-left:40px;')
+                                    | #{comment.text}
+                                  hr(style='color:white;')
+                              hr(style='background:white;')
+                            .divComments#divComments
+                                form
+                                  textarea.form-control.no-border#postText(rows='2' placeholder='Type something...' name='text')
+                                .box-footer.clearfix
+                                  form.form-comment2#form-commnet(name = 'commentData' )
+                                     button.btn.btn-info.pull-right.btn-sm Post
+                                     ul.nav.nav-pills.nav-sm(style='margin-top:10px; color:white')
+                                      li.nav-item
+                                       input.form__upload.fa.fa-camera.filestyle(type='file' accept='image/*' id='fileImg', name='postImg' data-buttonText='' data-iconName='fa fa-camera fa-lg')
+                                      li.nav-item#img_postLi(style='margin-top: -10px; position:absolute; z-index: 100; margin-left: 121px; display:none')
+                                       img#img_post(src='#' width='50px' height='50px')
+                                       img.cancel#cancelBtn(src='/img/favicons/Black_x.svg' style='width: 13px; position: absolute; margin-left: -9px; height: 13px; margin-top: 0px;')
+                .col-md-3
+                    .tr-section.tr-ad.ad-before
+                        a(href='#')
+                            img.img-responsive(src='/img/posts/n.gif' alt='Image')
+
+
+    include _footer
+
+    //Scripts
+
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js')
+script(src='/js/logout.js')
+script(src='/js/comments.js')
+script(src='/bower_components/jquery/dist/jquery.js')
+script(src='/bower_components/tether/dist/js/tether.min.js')
+script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+script(src='/js/medium.js')

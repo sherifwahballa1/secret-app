@@ -1,0 +1,178 @@
+doctype html
+
+mixin navItem(link, text, icon, active)
+  li(class=`${active ? 'active' : ''}`)
+    a(href=`${link}`)
+      i(class=`fa ${icon}`)
+      | #{text}
+
+head
+  //
+    ==============================================
+    Title and Meta Tags
+    ===============================================
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  title #{title}
+  meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='description' content='Add your business website description here')
+  meta(name='keywords' content='Add your, business, website, keywords, here')
+  meta(name='author' content='Add your business, website, author here')
+  //
+    ==============================================
+    Favicons
+    ===============================================
+  link(rel='shortcut icon' href='/img/favicons/favicon.html')
+  link(rel='apple-touch-icon' href='/img/favicons/apple-touch-icon.html')
+  link(rel='apple-touch-icon' sizes='72x72' href='/img/favicons/apple-touch-icon-72x72.html')
+  link(rel='apple-touch-icon' sizes='114x114' href='/img/favicons/apple-touch-icon-114x114.html')
+  //
+    ==============================================
+    CSS
+    ===============================================
+  // Style
+  link(type='text/css' href='/bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet')
+  link(type='text/css' href='/css/app.css' rel='stylesheet')
+  link(type='text/css' rel='stylesheet' href='/css/style.css')
+body
+
+  include _header
+
+  // Posts Section
+  section.posts-2
+    .container-fluid
+      .row
+        .col-md-3
+          .card.widget-info-one
+            .widget-avatar-img
+              img.card-img-top.img-fluid(src=`/img/usersCover/${user.coverPhoto}` alt='')
+            // /.avatar-img
+            .card-block
+              .inner
+                .widget-avatar.pull-left
+                  img(alt='' src=`/img/usersPhoto/${user.photo}`)
+                h5 #{user.firstName} #{user.lastName}
+                span.subtitle #{user.bio}
+              // /.inner
+            .card-footer
+              ul.post-view
+                +navItem('#',`${numberOfFollower}`,'fa-users', false)
+                +navItem('#',`${numberOfFollowing}`,'fa-user-plus', true)
+                +navItem('#',`${numOfUserPosts}`,'fa-edit', false)
+          .card.widget-info-two
+            ul.list-group.list-group-flush
+              li.list-group-item
+                i.fa.fa-map-marker
+                | &nbsp; #{user.location}
+              li.list-group-item
+                i.fa.fa-users
+                | &nbsp; Group1
+              li.list-group-item
+                i.fa.fa-calendar
+                | &nbsp; Joined 2009
+              li.list-group-item
+                i.fa.fa-globe
+                a(href='http://www.themashabrand.com/' target='_blank') www.themashabrand.com
+        // /.col-md-4
+        .col-md-6
+          .box
+            form
+              textarea.form-control.no-border#postText(rows='3' placeholder='Type something...' name='text')
+            .box-footer.clearfix
+              form.form-post2#form-post2(name = 'postData')
+                button.btn.btn-info.pull-right.btn-sm Post
+                ul.nav.nav-pills.nav-sm
+                  li.nav-item
+                    input.form__upload.fa.fa-camera.filestyle(type='file' accept='image/*' id='fileImg', name='postImg' data-buttonText='' data-iconName='fa fa-camera fa-lg')
+                  li.nav-item#img_postLi(style='margin-top: -28px; z-index: 100; margin-left: 15px; display:none')
+                    img#img_post(src='#' width='50px' height='50px')
+                    img.cancel#cancelBtn(src='/img/favicons/Black_x.svg' style='width: 13px; position: absolute; margin-left: -9px; height: 13px; margin-top: 0px;')
+          each post,postNum in posts
+              - var len = posts.length
+              .tr-section.feed
+                .tr-post
+                  if(post.postImg !== 'undefined' && post.postImg.split('/')[0] !== '') 
+                    .entry-header
+                      .entry-thumbnail
+                        a(href='#')
+                          img.img-fluid(src=`/img/posts/${post.postImg}` alt='Image')
+                      // /entry-thumbnail
+                      // /entry-header
+                  .post-content
+                    .author-post
+                      if(user.id === post.user.id)
+                        a(href='/profile')
+                          img.img-fluid.rounded-circle(src=`/img/usersPhoto/${post.user.photo}` alt='Image')
+                      else
+                        a(href=`/user/${post.user._id}`)
+                          img.img-fluid.rounded-circle(src=`/img/usersPhoto/${post.user.photo}` alt='Image')
+                    // /author
+                    .entry-meta
+                      ul
+                        li
+                          if(user.id === post.user.id)
+                            a(href='/profile') #{post.user.firstName} #{post.user.lastName}
+                          else
+                            a(href=`/user/${post.user._id}`) #{post.user.firstName} #{post.user.lastName}
+                        li 2 months ago
+                    // /.entry-meta
+                    p
+                      | #{post.text}
+                    .read-more
+                      .feed.pull-left
+                        ul
+                          li
+                            a.btnLike(href=`/comments/${post.id}` data-post-id2=`${post.id }` data-user-id2=`${user.id}`)
+                              i.fa.fa-comments
+                              | 500
+                          li
+                            a.btnLike(onclick='hello(this)' data-post-id=`${post.id }` data-user-id=`${user.id}`)
+                            - for(var i=0; i<len; i++) 
+                                if likes[i] && likes[i].postId == `${post.id}` && likes[i].isLike == true
+                                  i.fa.fa-heart-o(style='color:red')
+                                  | 1
+                                  -i=i+(len-1)
+                                else if likes[i] && likes[i].postId == `${post.id}` && likes[i].isLike == false
+                                  i.fa.fa-heart-o
+                                  | 1
+                                  -i=i+(len-1)
+                                else if likes[i] && likes[i].postId != `${post.id}` && postNum == i
+                                  i.fa.fa-heart-o
+                                  | 1
+                                  -i=i+(len-1)
+                                else if !likes[i] && postNum == i
+                                  i.fa.fa-heart-o
+                                  | 1
+                                  -i=i+(len-1)
+
+        // /.col-md-6
+        .col-md-3
+          section.box-typical
+            header.box-typical-header-sm People you may know
+            .people-rel-list
+              ul.people-rel-list-photos
+                each user in users
+                  li
+                    a(href=`/user/${user.id}`)
+                      img(style='margin:5px' src=`/img/usersPhoto/${user.photo}` alt=`${user.firstName}`)
+                      p(style='color:black') #{user.firstName}#{user.lastName}
+
+          .tr-section.tr-ad.ad-before
+            a(href='#')
+              img.img-responsive(src='/img/posts/n.gif' alt='Image')
+
+
+  include _footer
+
+  //Scripts
+
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js')
+script(src='/js/post.js')
+script(src='/js/homePage.js')
+script(src='/js/logout.js')
+script(src='/bower_components/jquery/dist/jquery.js')
+script(src='/bower_components/tether/dist/js/tether.min.js')
+script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+script(src='/js/medium.js')
+// Mirrored from www.themashabrand.com/templates/Masha/Medium/newsfeed.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Dec 2019 11:42:48 GMT

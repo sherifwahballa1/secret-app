@@ -1,0 +1,129 @@
+doctype html
+head
+  //
+    ==============================================
+    Title and Meta Tags
+    ===============================================
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  title #{title}
+  meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='description' content='Add your business website description here')
+  meta(name='keywords' content='Add your, business, website, keywords, here')
+  meta(name='author' content='Add your business, website, author here')
+  //
+    ==============================================
+    Favicons
+    ===============================================
+  link(rel='shortcut icon' href='/img/favicons/favicon.html')
+  link(rel='apple-touch-icon' href='/img/favicons/apple-touch-icon.html')
+  link(rel='apple-touch-icon' sizes='72x72' href='/img/favicons/apple-touch-icon-72x72.html')
+  link(rel='apple-touch-icon' sizes='114x114' href='/img/favicons/apple-touch-icon-114x114.html')
+  //
+    ==============================================
+    CSS
+    ===============================================
+  // Style
+  link(type='text/css' href='/bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet')
+  link(type='text/css' href='/css/app.css' rel='stylesheet')
+  link(type='text/css' rel='stylesheet' href='/css/style.css')
+  link(type='text/css' rel='stylesheet' href='/css2/style.css')
+  
+mixin navItem(link, text, icon, active)
+  li(class=`${active ? 'side-nav--active' : ''}`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`/img/icons.svg#icon-${icon}`)
+      | #{text}
+
+body
+   
+  include _header
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          +navItem('/me', 'Settings', 'settings', true)
+          +navItem('/profile', 'Profile', 'briefcase')
+          +navItem('/home', 'Home', 'star')
+          +navItem('/logout', 'Logout', 'credit-card')
+
+        - if (user.role === 'admin')
+          .admin-nav
+            h5.admin-nav__heading Admin
+            ul.side-nav
+              +navItem('#', 'Manage tours', 'map')
+              +navItem('#', 'Manage users', 'users')
+              +navItem('#', 'Manage reviews', 'star')
+              +navItem('#', 'Manage bookings', 'briefcase')
+
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Your account settings
+          
+          //- WITHOUT API
+          //- form.form.form-user-data(action='/submit-user-data' method='POST')
+          
+          //- WITH API
+          form.form.form-user-data
+            .form__group
+              label.form__label(for='firstName') First Name
+              input#firstName.form__input(type='text', value=`${user.firstName}`, required, name='firstName')
+            .form__group
+              label.form__label(for='lastName') Last Name
+              input#lastName.form__input(type='text', value=`${user.lastName}`, required, name='lastName')
+            .form__group
+              label.form__label(for='bio') Bio
+              input#bio.form__input(type='text', value=`${user.bio}`, required, name='bio')
+            .form__group
+              label.form__label(for='phone') Phone
+              input#phone.form__input(type='phone', value=`${user.phone}`, required, name='phone' minlength=11)
+            .form__group
+              label.form__label(for='locayion') Location
+              input#location.form__input(type='text', value=`${user.location}`, required, name='location')
+            .form__group.ma-bt-md
+              label.form__label(for='email') Email address
+              input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+            .form__group.form__photo-upload
+              img.form__user-photo#userImg(src=`/img/usersPhoto/${user.photo}`, alt='User photo')
+              //-a.btn-text(href='') Choose new photo
+              input.form__upload(type='file' accept='image/*' id='photo', name='photo')
+              label(for='photo') Choose new photo
+            .form__group.form__photo-upload
+              img.form__user-photo#userCover(src=`/img/usersCover/${user.coverPhoto}`, alt='User Cover')
+              //-a.btn-text(href='') Choose new photo
+              input.form__upload(type='file' accept='image/*' id='coverPhoto', name='coverPhoto')
+              label(for='coverPhoto') Choose new Cover
+            .form__group.right
+              button.btn.btn--small.btn--green Save settings
+              
+        .line &nbsp;
+        
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Password change
+          form.form.form-user-password
+            .form__group
+              label.form__label(for='password-current') Current password
+              input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group
+              label.form__label(for='password') New password
+              input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group.ma-bt-lg
+              label.form__label(for='password-confirm') Confirm password
+              input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group.right
+              button.btn.btn--small.btn--green.btn--save-password Save password
+
+
+  include _footer
+    //Scripts
+
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js')
+script(src='/js/logout.js')
+script(src='/js/updateUserSettings.js')
+script(src='/js/updatePassword.js')
+script(src='/bower_components/jquery/dist/jquery.js')
+script(src='/bower_components/tether/dist/js/tether.min.js')
+script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+script(src='/js/medium.js')

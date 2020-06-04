@@ -1,0 +1,132 @@
+doctype html
+head
+  //
+    ==============================================
+    Title and Meta Tags
+    ===============================================
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  title #{title}
+  meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='description' content='Add your business website description here')
+  meta(name='keywords' content='Add your, business, website, keywords, here')
+  meta(name='author' content='Add your business, website, author here')
+  //
+    ==============================================
+    Favicons
+    ===============================================
+  link(rel='shortcut icon' href='/img/favicons/favicon.html')
+  link(rel='apple-touch-icon' href='/img/favicons/apple-touch-icon.html')
+  link(rel='apple-touch-icon' sizes='72x72' href='/img/favicons/apple-touch-icon-72x72.html')
+  link(rel='apple-touch-icon' sizes='114x114' href='/img/favicons/apple-touch-icon-114x114.html')
+  //
+    ==============================================
+    CSS
+    ===============================================
+  // Style
+  link(type='text/css' href='/bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet')
+  link(type='text/css' href='/css/app.css' rel='stylesheet')
+  link(type='text/css' rel='stylesheet' href='/css/style.css')
+body
+   
+  include _header
+ 
+  header.profile-bg-picture(style=`background:linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url(/img/usersCover/${user.coverPhoto}) no-repeat center center fixed; background-position: center center; -webkit-background-size: cover; background-size: cover; background-attachment: scroll;`)
+  section.user-section
+   .container
+    .profile-user-box
+      .row
+        .col-sm-6
+          span.pull-left.m-r-15
+            img.thumb-lg.img-circle(src=`/img/usersPhoto/${user.photo}` alt='')
+          .media-body
+            h4.m-t-5.m-b-5.ellipsis #{user.firstName} #{user.lastName}
+            p.font-13  #{user.bio}
+        .col-sm-6
+          .text-right
+            a(href='/me')
+              button.btn.btn-success.waves-effect.waves-light(type='button')
+                i.fa.fa-user.m-r-5
+                |  Edit Profile
+
+  section.posts-2
+  .container
+    .row
+     .col-lg-3
+        .tbl
+          .tbl-row
+            .tbl-cell
+              span.number #{numberOfFollower}
+              | Followers
+            .tbl-cell
+              span.number #{numberOfFollowing}
+              | Following
+        .card.about-user
+          .card-body
+            .card-block
+              h4.card-title.info About
+              p.card-text #{user.bio}
+              .text-left
+                p.card-text
+                  strong Full Name :
+                  span.m-l-15 #{user.firstName} #{user.lastName}
+                p.card-text
+                  strong Mobile :
+                  span.m-l-15 #{user.phone}
+                p.card-text
+                  strong Location :
+                  span.m-l-15 #{user.location}
+     
+     .col-lg-6
+        each post in posts
+            .tr-section.feed
+              .tr-post
+                if(post.postImg !== 'undefined' && post.postImg.split('/')[0] !== '') 
+                    .entry-header
+                      .entry-thumbnail
+                        a(href='#')
+                          img.img-fluid(src=`/img/posts/${post.postImg}` alt='Image')
+                      // /entry-thumbnail
+                    // /entry-header
+                .post-content
+                  .author-post
+                    a(href='/profile')
+                      img.img-fluid.rounded-circle(src=`/img/usersPhoto/${user.photo}` alt='Image')
+                  // /author
+                  .entry-meta
+                    ul
+                      li
+                        a(href='#') #{user.firstName} #{user.lastName}
+                      li 2 months ago
+                  // /.entry-meta
+                  p
+                    | #{post.text}
+                  .read-more
+                    .feed.pull-left
+                      ul
+                        li
+                          i.fa.fa-comments
+                          | 500
+                        li
+                          i.fa.fa-heart-o
+                          | 143
+                          button.formDelete(onclick='hello(this)' data-post-id=`${post.id }` style='position:absolute; left:95%; color:black; margin-top: -67px;')
+                             i.fa.fa-large.fa-chevron-down(aria-hidden='true')
+    
+     .col-lg-3
+      .tr-section.tr-ad.ad-before
+        a(href='#')
+          img.img-responsive(src='img/posts/n.gif' alt='Image')
+  include _footer
+    //Scripts
+
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js')
+script(src='/js/post.js')
+script(src='/js/logout.js')
+script(src='/js/deletePost.js')
+script(src='/bower_components/jquery/dist/jquery.js')
+script(src='/bower_components/tether/dist/js/tether.min.js')
+script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+script(src='/js/medium.js')
+// Mirrored from www.themashabrand.com/templates/Masha/Medium/newsfeed.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Dec 2019 11:42:48 GMT
